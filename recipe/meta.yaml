@@ -1,4 +1,4 @@
-{% set version = '0.1-10' %}
+{% set version = '0.1-11' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,15 +12,22 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/NLP_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/NLP/NLP_{{ version }}.tar.gz
-  sha256: c3a8e5dc473f2a8bb8fa2358d919e43fc026d2e4ebf54cf9bda0fe262ab409cb
+  sha256: 580551a463c14d7186f62e029504f2e95dd9cbbaaef3f979221ddffafb036597
+
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
 
 build:
+  # If this is a new build for the same version, increment the build number.
   number: 0
-  skip: true  # [win32]
 
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
+
 
 requirements:
   build:
@@ -31,8 +38,15 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('NLP')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('NLP')"           # [not win]
     - "\"%R%\" -e \"library('NLP')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: https://CRAN.R-project.org/package=NLP
@@ -44,3 +58,25 @@ extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: NLP
+# Version: 0.1-11
+# Title: Natural Language Processing Infrastructure
+# Authors@R: person("Kurt", "Hornik", role = c("aut", "cre"), email = "Kurt.Hornik@R-project.org")
+# Description: Basic classes and methods for Natural Language Processing.
+# License: GPL-3
+# Imports: utils
+# Depends: R (>= 3.2.0)
+# NeedsCompilation: no
+# Packaged: 2017-08-15 08:54:14 UTC; hornik
+# Author: Kurt Hornik [aut, cre]
+# Maintainer: Kurt Hornik <Kurt.Hornik@R-project.org>
+# Repository: CRAN
+# Date/Publication: 2017-08-15 09:13:23 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

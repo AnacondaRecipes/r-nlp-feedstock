@@ -10,8 +10,8 @@ package:
 source:
   fn: NLP_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/NLP_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/NLP/NLP_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/NLP_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/NLP/NLP_{{ version }}.tar.gz
   sha256: 580551a463c14d7186f62e029504f2e95dd9cbbaaef3f979221ddffafb036597
 
 

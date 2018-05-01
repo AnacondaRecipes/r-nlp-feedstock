@@ -14,22 +14,15 @@ source:
     - {{ cran_mirror }}/src/contrib/Archive/NLP/NLP_{{ version }}.tar.gz
   sha256: 580551a463c14d7186f62e029504f2e95dd9cbbaaef3f979221ddffafb036597
 
-
-  # patches:
-   # List any patch files here
-   # - fix.patch
-
 build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
 
-
   # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
-
 
 requirements:
   build:
